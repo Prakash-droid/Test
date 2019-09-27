@@ -1,9 +1,9 @@
 
 node {
-  stage('Checkout Files from SCM') {
+  stage('Checkout SCA Files from SCM') {
 	checkout scm
    }
-  stage('Copy FIle to Apache') {
-	sh 'echo "copied"'
+  stage('Build') {
+	mvn package
    }
 }
