@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Generated from Oracle SOA Archetype version 12.1.3.0.0  -->
+<composite name="firstscaproject"
+           revision="1.0"
+           label="2013-10-14_14-36-17_928"
+           mode="active"
+           state="on"
+           xmlns="http://xmlns.oracle.com/sca/1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+           xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
+           xmlns:ui="http://xmlns.oracle.com/soa/designer/"
+           xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
+  <import namespace="http://xmlns.oracle.com/firstscaapplication/firstscaproject/MavenBPELProcess"
+          location="WSDLs/MavenBPELProcess.wsdl" importType="wsdl"/>
+  <service name="mavenbpelprocess_client_ep" ui:wsdlLocation="WSDLs/MavenBPELProcess.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/firstscaapplication/firstscaproject/MavenBPELProcess#wsdl.interface(MavenBPELProcess)"/>
+    <binding.ws port="http://xmlns.oracle.com/firstscaapplication/firstscaproject/MavenBPELProcess#wsdl.endpoint(mavenbpelprocess_client_ep/MavenBPELProcess_pt)"/>
+  </service>
+  <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
+  <component name="MavenBPELProcess" version="2.0">
+    <implementation.bpel src="BPEL/MavenBPELProcess.bpel"/>
+    <componentType>
+      <service name="mavenbpelprocess_client" ui:wsdlLocation="WSDLs/MavenBPELProcess.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/firstscaapplication/firstscaproject/MavenBPELProcess#wsdl.interface(MavenBPELProcess)"/>
+      </service>
+    </componentType>
+    <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
+  </component>
+  <wire>
+    <source.uri>mavenbpelprocess_client_ep</source.uri>
+    <target.uri>MavenBPELProcess/mavenbpelprocess_client</target.uri>
+  </wire>
+</composite>
